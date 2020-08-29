@@ -1,6 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-// projectData = {};
-projectData = {name:'saqer',age:'2050'};
+projectData = {};
+// projectData = {name:'saqer',age:'2050'};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -45,4 +45,6 @@ app.post('/add', callBack);
 
 function callBack(request, response) {
     response.send('POST received');
+    projectData.push(request.body);
+    console.log(projectData);
 }
