@@ -41,10 +41,16 @@ function sendData(request, response) {
 };
 
 // POST route
-app.post('/add', callBack);
+app.get('/saveRecord', callBack);
 
 function callBack(request, response) {
-    response.send('POST received');
-    projectData.push(request.body);
+    console.log(request.body)
+    newRecord = {
+        temp: request.body.temp,
+        date: request.body.date,
+        userResponse: request.body.userResponse,
+    }
+    projectData.push(newRecord);
+    response.send(projectData);
     console.log(projectData);
 }
