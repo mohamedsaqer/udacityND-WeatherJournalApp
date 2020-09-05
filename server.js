@@ -41,7 +41,8 @@ function sendData(request, response) {
 };
 
 // POST route
-app.get('/saveRecord', callBack);
+app.post('/saveRecord', callBack);
+// app.get('/saveRecord', callBack);
 
 function callBack(request, response) {
     console.log(request.body)

@@ -24,26 +24,17 @@ function generateTemp()
         }
     }
 
-    // const postTemp = async (url = '', data = {}) => {
-    //     console.log(data)
-    //     const response = await fetch(url, {
-    //         method: 'POST',
-    //         credentials: 'same-origin',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(data),
-    //     });
+    const postTemp = async (url = '', data = {}) => {
+        console.log(data)
+        const response = await fetch(url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
 
-    //     try {
-    //         const newData = await response.json();
-    //         return newData;
-    //     } catch (error) {
-    //         console.log('error', error);
-    //     }
-    // }
-    const postTemp = async (url) => {
-        const response = await fetch(url);
         try {
             const newData = await response.json();
             return newData;
@@ -51,6 +42,15 @@ function generateTemp()
             console.log('error', error);
         }
     }
+    // const postTemp = async (url) => {
+    //     const response = await fetch(url);
+    //     try {
+    //         const newData = await response.json();
+    //         return newData;
+    //     } catch (error) {
+    //         console.log('error', error);
+    //     }
+    // }
     
     if (zipCode < 100) {
         alert('Wrong ZIP Code')
