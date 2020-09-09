@@ -40,18 +40,35 @@ function generateTemp()
             console.log('error', error);
         }
     }
+
+    const updateUI = async () => {
+        const request = await fetch('/all');
+        try {
+            const allData = await request.json();
+            // if we need show all the records
+            // allData.forEach(element => {
+            // });
+            console.log(allData.length);
+            document.getElementById('date').innerHTML = allData[allData.length].date;
+            document.getElementById('temp').innerHTML = allData[allData.length].temp;
+            document.getElementById('content').innerHTML = allData[allData.length].userResponse;
+        } catch (error) {
+            console.log("error", error);
+        }
+    }
     
     if (zipCode < 100) {
         alert('Wrong ZIP Code')
     } else {
-        // console.log(zipCode);
-        // console.log(feeling);
+        let userResponse = feeling.value;
         getTemp(baseURL + zipCode.value + '&units=metric&appid=' + apiKey)
         .then(function (data){
-            console.log(data);
-            postTemp('/saveRecord', { temp: data.main.temp, date: newDate, userResponse: feeling.value, });
-        });
+            postTemp('/saveRecord', { temp: data.main.temp, date: newDate, userResponse: userResponse, });
+        }).then(
+            updateUI()
+        );
         zipCode.value = '';
+        feeling.value = '';
     }
 };
 
