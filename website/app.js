@@ -12,8 +12,6 @@ document.querySelector('#generate').addEventListener('click', generateTemp);
 /* Function called by event listener */
 function generateTemp()
 {
-    zipCode = zipCode.value;
-    feeling = feeling.value;
     const getTemp = async (url) => {
         const response = await fetch(url);
         try {
@@ -25,7 +23,7 @@ function generateTemp()
     }
 
     const postTemp = async (url = '', data = {}) => {
-        console.log(data)
+        // console.log(data)
         const response = await fetch(url, {
             method: 'POST',
             credentials: 'same-origin',
@@ -42,26 +40,18 @@ function generateTemp()
             console.log('error', error);
         }
     }
-    // const postTemp = async (url) => {
-    //     const response = await fetch(url);
-    //     try {
-    //         const newData = await response.json();
-    //         return newData;
-    //     } catch (error) {
-    //         console.log('error', error);
-    //     }
-    // }
     
     if (zipCode < 100) {
         alert('Wrong ZIP Code')
     } else {
-        console.log(zipCode);
-        console.log(feeling);
-        getTemp(baseURL + zipCode + '&units=metric&appid=' + apiKey)
+        // console.log(zipCode);
+        // console.log(feeling);
+        getTemp(baseURL + zipCode.value + '&units=metric&appid=' + apiKey)
         .then(function (data){
             console.log(data);
-            postTemp('/saveRecord', { temp: data.main.temp, date: newDate, userResponse: feeling, });
+            postTemp('/saveRecord', { temp: data.main.temp, date: newDate, userResponse: feeling.value, });
         });
+        zipCode.value = '';
     }
 };
 
