@@ -11,7 +11,7 @@ document.querySelector('#generate').addEventListener('click', generateTemp);
 /* Function called by event listener */
 function generateTemp()
 {
-    if (zipCode < 100) {
+    if (zipCode.value < 100) {
         alert('Wrong ZIP Code')
     } else {
         let userResponse = feeling.value;
